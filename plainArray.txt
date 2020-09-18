@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Object[] a = {3};
+        Object[] b = {1,2,a};
+        Object[] c = {b,4};
+        List<String> res = new ArrayList<>();
+        checkItem(c,res);
+        System.out.println(String.join(",",res));
+
+
+
+    }
+
+    private static void checkItem(Object o,List<String> res) {
+        if(o instanceof Integer)
+            res.add(o.toString());
+        else {
+            Object[] n = ((Object[])o);
+            for(int k=0;k < n.length; k++)
+                checkItem(n[k], res);
+        }
+    }
+}
